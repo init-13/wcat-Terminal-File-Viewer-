@@ -94,18 +94,21 @@ function doflag_b(string){
 
 function do_flag(string,flag_array){
  for(let i of flag_array){
+	 let lock=0;
  	if(i=='-s'){
  		string = doflag_s(string);
  		// console.log("Apply -s");
  	}
 
- 	else if(i=='-n')
- 		string = doflag_n(string);
+ 	else if(i=='-n' && lock==0)
+	{string = doflag_n(string);
+	lock=1;}
   
 
-  else if(i=='-b')
+  else if(i=='-b' && lock==0){
   	string = doflag_b(string);
-
+	  lock=1;
+  }
   else
   	throw "Flag Error: Use only -s -n and -b flags. "
 
